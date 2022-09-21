@@ -1,23 +1,33 @@
 #include "main.h"
 
 /**
- * strcat - Concatenates the string pointed to by @src, including the terminat 
- *          null byte, to the end of the string pointed to by @dest. 
- * @dest: A pointer to the string to be concatenated upon.
- * @src: The source string to be appended to @dest.
+ * cap_string - capitalizes all words in a string
+ * @s: string to capitalize
  *
- * Return: A pointer to the destination string @dest.
+ * Return: address of s
  */
 
-char *strcat(char *dest, const char *src)
+char *cap_string(char *s)
 {
-	int index = 0, dest_len = 0;
+	int i = 0, j;
+	char a[] = " \t\n,;.!?\"(){}";
 
-	while (dest[index++])
-		dest_len++;
-
-	for (index = 0; src[index]; index++)
-	      dest[dest_len++] = src[index];
-
-	return(dest);
+	while (*(s + i))
+	{
+		if (*(s + i) >= 'a' && *(s + i) <= 'z')
+		{
+			if (i == 0)
+				*(s + i) -= 'a' - 'A';
+			else
+			{
+				for (j = 0; j <= 12; j++)
+				{
+					if (a[j] == *(s + i - 1))
+						*(s + i) -= 'a' - 'A';
+				}
+			}
+		}
+		i++;
+	}
+	return (s);
 }
